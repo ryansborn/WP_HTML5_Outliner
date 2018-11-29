@@ -14,7 +14,9 @@
 ## Screenshots
 Screenshots #1 and #2 show the 'HTML5 Outliner' dropdown box in the Toolbar. At the top of the dropdown, clicking 'Structural (HTML5)' or 'Heading-level' selects the outline to display. Clicking the icon in the top right corner opens a new window that displays both outlines, as shown in screenshot #3. An HTML 5 outline appears in #1, a heading-level outline in #2.
 
-1. <img src="../assets/screenshot-1.png" alt="screenshot" height="192" alt="HTML 5 outline in a Toolbar dropdown box"> &nbsp;&nbsp;&nbsp; 2. <img src="../assets/screenshot-2.png" alt="screenshot" height="192" alt="Heading-level outline in a Toolbar dropdown box"> &nbsp;&nbsp;&nbsp; 3. <img src="../assets/screenshot-3.png" alt="screenshot" height="192" alt="HTML 5 and heading-level outlines in a new window">
+1_<img src="../assets/screenshot-1.png" alt="HTML 5 outline in a Toolbar dropdown box" height="192">
+&nbsp;&nbsp; 2_<img src="../assets/screenshot-2.png" alt="Heading-level outline in a Toolbar dropdown box" height="192">
+&nbsp;&nbsp; 3_<img src="../assets/screenshot-3.png" alt="HTML 5 and heading-level outlines in a new window" height="192">
 
 
 ## FAQ
