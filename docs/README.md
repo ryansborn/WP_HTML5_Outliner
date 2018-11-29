@@ -1,4 +1,4 @@
-# WP HTML5 Outliner <img align="right" src="../assets/icon_dark.png" alt="icon" height="192" width="192">
+# WP HTML5 Outliner <img align="right" src="../assets/icon_dark.png" alt="icon" height="128" width="128">
 
 [WP HTML5 Outliner](https://wordpress.org/plugins/wp-html5-outliner/) (WPH5O) adds an HTML 5 outline plus a heading-level outline to the WordPress Toolbar.
 
