@@ -1,7 +1,7 @@
 /**
  * Writes a Heading-level outline and adds toggle and popout functionality.
  *
- * Writes a Heading-level outline to complement the Structural, i.e. HTML 5, 
+ * Writes a Heading-level outline to complement the HTML 5 ('Structural') 
  * Outline generated server-side. Also, enables the user to toggle which outline 
  * is shown, as well as open a new window that displays both outlines.
  *
@@ -10,12 +10,12 @@
 
 jQuery( document ).ready( function( $ ) {
 
-		// Contains the outlines.
+	    // Contains the outlines.
 	var container = document.getElementById( 'wph5o-outline' ),
-		// Lists the headings.
-		headings  = container.querySelectorAll( '.wph5o-heading' ),
-		// Presents the popout icon (as a pseudo-element).
-		popper    = document.getElementById( 'wph5o-popper' ),
+	    // Lists the headings.
+	    headings  = container.querySelectorAll( '.wph5o-heading' ),
+	    // Presents the popout icon (as a pseudo-element).
+	    popper    = document.getElementById( 'wph5o-popper' ),
 		outlines  = {
 			// Contains the Structural Outline.
 			s : document.getElementById( 'wph5o-structural' ),
@@ -78,13 +78,11 @@ jQuery( document ).ready( function( $ ) {
 	function popout() {
 			
 		var popped = window.open( '', '', 'scrollbars=1,resizable=1'),
-			// Contains the anchors.
-			toggle = document.getElementById( 'wph5o-outline-toggle' ) 
-					.cloneNode( true ),
-			contnr = container.cloneNode( true ),
-			// Links to the plugin stylesheet.
-		    css    = document.getElementById( 'wph5o-styles-css' )
-		    		.cloneNode();
+		    // Contains the anchors.
+		    toggle = document.getElementById( 'wph5o-outline-toggle' ).cloneNode( true ),
+		    contnr = container.cloneNode( true ),
+		    // Links to the plugin stylesheet.
+		    css    = document.getElementById( 'wph5o-styles-css' ).cloneNode();
 
 		// Marks body as the wrapper for the anchor and outline containers.
 		$( popped.document.body ).addClass( 'wph5o-wrapper' );
@@ -109,24 +107,23 @@ jQuery( document ).ready( function( $ ) {
 	function writeHeadingLevelOutline() {
 	
 		// Holds the last heading level when looping through the headings.
-		var	prevLevel = 1;
+		var prevLevel = 1;
 
 		// Removes the default notice for the outline: 'No outline was created'.
 		$( outlines.hl ).children( '.wph5o-notice' ).remove();
 
 		for ( var i = 0, l = headings.length; i < l; i++ ) {
 				
-				// Contains the heading tag name and text.
-			var heading = headings.item(i)	  
-						 .cloneNode( true ),
-				// Gets the element that holds the name, e.g., '<H1>'.
-				tag		= heading.querySelector( '.wph5o-h-tag' ),
-				// Gets the element that holds the text.
-				text    = heading.querySelector( '.wph5o-h-text' ),
-				// Gets the level, .e.g., 1 from '<H1>'
-				level   = Number( tag.textContent.substring( 2, 3 ) ),
-				// Finds the difference between the current and last levels.
-				diff    = level - prevLevel;
+			    // Contains the heading tag name and text.
+			var heading = headings.item(i).cloneNode( true ),
+			    // Gets the element that holds the name, e.g., '<H1>'.
+			    tag	    = heading.querySelector( '.wph5o-h-tag' ),
+			    // Gets the element that holds the text.
+			    text    = heading.querySelector( '.wph5o-h-text' ),
+			    // Gets the level, .e.g., 1 from '<H1>'
+			    level   = Number( tag.textContent.substring( 2, 3 ) ),
+			    // Finds the difference between the current and last levels.
+			    diff    = level - prevLevel;
 
 			// Checks for skipped heading level(s), e.g., H3 after H1.
 			if ( diff > 1 ) {
@@ -139,7 +136,7 @@ jQuery( document ).ready( function( $ ) {
 					// Adds fill-in heading to represent a skipped level.
 					
 					var p = document.createElement( 'p' ),
-						h = tag.cloneNode();
+					    h = tag.cloneNode();
 
 					$( p ).addClass( 'wph5o-missing-heading wph5o-level-' + j );
 					$( p ).text( ' [missing]' ).appendTo( outlines.hl );
