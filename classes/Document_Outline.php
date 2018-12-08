@@ -1,7 +1,7 @@
 <?php
 
 /**
- * WP HTML5 Outliner: HTML5_Outline class
+ * WP HTML5 Outliner: Document_Outline class
  * 
  * @package Wordpress
  * @since   1.0.0
@@ -15,11 +15,11 @@ namespace wph5o;
 require_once dirname( __FILE__ ) . '/Autoloader.php';
 
 /**
- * Supplies an HTML 5 outline in HTML format.
+ * Supplies an HTML 5 outline of an HTML Document in HTML format.
  *
  * @since 1.0.0
  */
-class HTML5_Outline {
+class Document_Outline {
 
 	/**
 	 * Represents the HTML 5 outline.
@@ -30,7 +30,7 @@ class HTML5_Outline {
 	private $html5_outline;
 
 	/**
-	 * Initializes a new HTML5_Outline.
+	 * Initializes a new Document_Outline.
 	 * 
 	 * @since 1.0.0
 	 * @param string $source the HTML to outline
@@ -58,11 +58,11 @@ class HTML5_Outline {
 	}
 
 	/**
-	 * Calls the outline algorithm on the body element of the HTML source.
+	 * Calls the outline algorithm on the body element of the HTML source document.
 	 * 
 	 * @since  1.0.0
-	 * @return object|string Returns an Outline instance or, if there is no body
-	 * element, an empty string.
+	 * @param  string $source the HTML source
+	 * @return object Returns an Outline instance.
 	 */
 	private function outline( $source ) {
 
@@ -80,4 +80,4 @@ class HTML5_Outline {
 
 	}
 
-} // END class HTML5_Outline
+} // END class Document_Outline
