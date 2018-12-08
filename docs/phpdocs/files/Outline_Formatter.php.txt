@@ -51,18 +51,19 @@ class Outline_Formatter {
 
 			} else {
 
-				$list .= sprintf( '<li>
-								     <details class="%3$s-subsections" open> 
-									   <summary class="%3$s-parent-heading-container"> 
-									     %1$s
-									   </summary>
-									   %2$s
-									 </details>
-								   </li>',
-								   self::wrap_section_heading( $section ),
-								   self::list_headings( $subs ),
-								   __NAMESPACE__
-						 );
+				$list .= sprintf( 
+					'<li>
+						<details class="%3$s-subsections" open> 
+							<summary class="%3$s-parent-heading-container"> 
+								%1$s
+							</summary>
+								%2$s
+						</details>
+					</li>',
+					self::wrap_section_heading( $section ),
+					self::list_headings( $subs ),
+					__NAMESPACE__
+				);
 
 			}
 
@@ -93,10 +94,11 @@ class Outline_Formatter {
 		 */
 		if ( false === $heading ) {
 			
-			return sprintf( '<p class="%2$s-heading-notice">%1$s</p>',
-					  		 self::issue_heading_notice( $section_name, 'implied' ),
-					  		 __NAMESPACE__
-				   );
+			return sprintf(
+				'<p class="%2$s-heading-notice">%1$s</p>',
+				self::issue_heading_notice( $section_name, 'implied' ),
+				__NAMESPACE__
+			);
 
 		}
 		
@@ -104,6 +106,8 @@ class Outline_Formatter {
 		if ( 'hgroup' == $heading->tagName ) {
 
 			$elements = $heading->getElementsByTagName( '*' );
+			// Represents the index (or position) of a heading in the hgroup.
+			$hgroup_index = 0;
 
 			for ( $i = 0; $i < $elements->length; $i++ ) {
 
@@ -116,29 +120,34 @@ class Outline_Formatter {
 				 */
 				if ( preg_match( '/^h[1-6]$/i', $element->tagName ) ) {
 					
-					$headings[] = sprintf( '<p class="%2$s-heading">%1$s</p>',
-					  	 					self::wrap_heading_name_and_text( 
-					  	 						$element, $section_name, $i
-					  	 					),
-					  	 					__NAMESPACE__
-			   				  	  );
-				
+					$headings[] = sprintf(
+						'<p class="%2$s-heading">%1$s</p>',
+						self::wrap_heading_name_and_text( 
+						$element, $section_name, $hgroup_index
+						),
+						__NAMESPACE__
+			   		);
+					
+					$hgroup_index++;
+
 				}
 
 			}
 
-			return sprintf( '<div class="%2$s-hgroup">%1$s</p>',
-					  	 	 implode( ' <b>:</b> ', $headings ),
-					  	 	 __NAMESPACE__
-			   	   );
+			return sprintf(
+				'<div class="%2$s-hgroup">%1$s</p>',
+				implode( ' <b>:</b> ', $headings ),
+				__NAMESPACE__
+			);
 
 		}
 
 		// Wraps a standard heading (explicit, not in an hgroup element).
-		return sprintf( '<p class="%2$s-heading">%1$s</p>',
-					  	 self::wrap_heading_name_and_text( $heading, $section_name ),
-					  	 __NAMESPACE__
-			   );
+		return sprintf(
+			'<p class="%2$s-heading">%1$s</p>',
+			self::wrap_heading_name_and_text( $heading, $section_name ),
+			__NAMESPACE__
+		);
 
 	}
 
@@ -179,13 +188,14 @@ class Outline_Formatter {
 
 		$tag = '&lt;' . strtoupper( $h_name ) . '&gt;';
 
-		return sprintf( '<b class="%4$s-h-tag">%1$s</b>
-						 <span class="%2$s">%3$s</span>',
-						 $tag,
-						 $class,
-						 $text,
-						 __NAMESPACE__
-			   );
+		return sprintf(
+			'<b class="%4$s-h-tag">%1$s</b>
+			<span class="%2$s">%3$s</span>',
+			$tag,
+			$class,
+			$text,
+			__NAMESPACE__
+		);
 
 	}
 
@@ -235,16 +245,18 @@ class Outline_Formatter {
 		if ( 'implied' == $about ) {
 
 			/* translators: %s represents an HTML tag name, e.g., 'body'. */
-			return sprintf( __( '[%s element with no heading]', 'wph5o' ), 
-				   			$element_name
-			 	   );
+			return sprintf(
+				__( '[%s element with no heading]', 'wph5o' ), 
+				$element_name
+			);
 		
 		}
 
 		/* translators: %s represents an HTML tag name, e.g., 'body'. */
-		return sprintf( __( '[%s element with empty heading]', 'wph5o' ), 
-						$element_name 
-			   );
+		return sprintf( 
+			__( '[%s element with empty heading]', 'wph5o' ), 
+			$element_name 
+		);
 
 	}
 	

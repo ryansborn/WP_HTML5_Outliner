@@ -74,9 +74,9 @@ class Section {
 	public function __construct( $node, $heading = null, $subs = [], 
 		$container = null ) {
 
-		$this->nodes 	 = array( $node );
+		$this->nodes     = array( $node );
 		$this->heading 	 = $heading;
-		$this->subs  	 = $subs;
+		$this->subs      = $subs;
 		$this->container = $container;
 
 	}
