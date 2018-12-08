@@ -7,12 +7,12 @@ $ns: 'wph5o';
 /* For detailed comments, see the SASS file: #{$ns}-styles.scss */
 
 // Colors
-$toolbar-black:	   #23282d;
-$toolbar-blue:	   #00b9eb;
+$toolbar-black:    #23282d;
+$toolbar-blue:     #00b9eb;
 $toolbar-sub-bg:   #32373c; // outline background
 $toolbar-sub-text: #ccc;    // outline text
-$toggle-titles:	   #aaa;    // darkened to offset from outline text
-$diagram-gray:	   #999;    // tree diagram lines
+$toggle-titles:    #aaa;    // darkened to offset from outline text
+$diagram-gray:     #999;    // tree diagram lines
 $notice-yellow:    #e6a100;
 
 
@@ -65,19 +65,19 @@ $notice-yellow:    #e6a100;
 .#{$ns}-wrapper { // Toolbar and Popout
 
 	background: $toolbar-sub-bg;   // Matches poput to toolbar
-	color: $toolbar-sub-text; 	   // Matches poput to toolbar
-	font-family: sans-serif;	   // Poput only. Toolbar overwrites
-	margin: 0 !important;		   // Overwrites toolbar
+	color: $toolbar-sub-text;      // Matches poput to toolbar
+	font-family: sans-serif;       // Poput only. Toolbar overwrites
+	margin: 0 !important;          // Overwrites toolbar
 	padding: 0 2em 2em !important; // Overwrites toolbar
 
 	.#{$ns}-outliner-toolbar-node & { // Toolbar only
 		max-height: 600px;
 		overflow-y: auto;
-		width: 300px !important; 	// Overwrites toolbar
+		width: 300px !important;      // Overwrites toolbar
 	}
 
 	* {
-		line-height: 1.5 !important; // Overwrites toolbar
+		line-height: 1.5 !important;  // Overwrites toolbar
 	}
 
 	.#{$ns}-heading b, 
@@ -105,16 +105,16 @@ $notice-yellow:    #e6a100;
 	cursor: pointer;
 	float: right;
 
-	&:after { 			  			// Sits inside .#{$ns}-wrapper padding-right
-		content: "\f504"; 			// 'new window' icon
+	&:after { // Sits inside .#{$ns}-wrapper padding-right
+		content: "\f504";           // 'new window' icon
 		background: $toggle-titles;
 		color: $toolbar-sub-bg;
 		font-family: dashicons;
 		font-size: 1.2em;
 		line-height: 1;
-		padding: .333em;			// Total size is 2em square, relative to .#{$ns}-wrapper
+		padding: .333em;            // Total size is 2em square, relative to .#{$ns}-wrapper
 		position: fixed;
-		z-index: 3;		  			// Over ##{$ns}-outline-toggle
+		z-index: 3;                 // Over ##{$ns}-outline-toggle
 	}
 
 	&:hover {
@@ -138,10 +138,10 @@ $notice-yellow:    #e6a100;
 	z-index: 2; // Over ##{$ns}-outline, under ##{$ns}-popper
 
 	.#{$ns}-outliner-toolbar-node & { // Toolbar only
-		line-height: 2 !important;   // Centers text vertically. Overwrites toolbar.
-		margin-left: -2em; 		     // Cancels padding-left on .#{$ns}-wrapper
-		padding-left: 2em; 		     // Replaces padding-left on .#{$ns}-wrapper
-		width: 300px; 	  		     // Fills width of .#{$ns}-wrapper
+		line-height: 2 !important; // Centers text vertically. Overwrites toolbar.
+		margin-left: -2em;         // Cancels padding-left on .#{$ns}-wrapper
+		padding-left: 2em;         // Replaces padding-left on .#{$ns}-wrapper
+		width: 300px;              // Fills width of .#{$ns}-wrapper
 	}
 
 	body.#{$ns}-wrapper > & { // Popout only
@@ -161,8 +161,8 @@ $notice-yellow:    #e6a100;
 
 	color: inherit !important;  // Inherits color from ##{$ns}-outline-toggle
 	display: inline !important; // Overwrites toolbar
-	padding: 0 !important;		// Overwrites toolbar
-	text-decoration: none;		// Same as toolbar. Set for poput.
+	padding: 0 !important;      // Overwrites toolbar
+	text-decoration: none;      // Same as toolbar. Set for poput.
 
 	&:link, 
 	&:visited {
@@ -191,7 +191,7 @@ $notice-yellow:    #e6a100;
 ##{$ns}-structural, 
 ##{$ns}-h-level {
 
-	color: inherit !important; 	   // Stops Chrome from making all text $toolbar-blue
+	color: inherit !important;     // Stops Chrome from making all text $toolbar-blue
 	padding-top: 2.5em !important; // Toolbar only. Leaves room for ##{$ns}-outline-toggle.
 
 	&:focus {
@@ -247,10 +247,10 @@ $notice-yellow:    #e6a100;
 
 	li {
 
-		list-style-type: none; 			// Same as toolbar. Set for poput
-		margin: 0 !important;		    // Overwrites toolbar		
+		list-style-type: none;          // Same as toolbar. Set for poput
+		margin: 0 !important;           // Overwrites toolbar		
 		padding: .5em 0 0 0 !important; // Overwrites toolbar
-		position: relative;				// Same as toolbar. Set for poput
+		position: relative;             // Same as toolbar. Set for poput
 
 		&:first-child::before {
 			@extend %tree-lines;
@@ -263,7 +263,7 @@ $notice-yellow:    #e6a100;
 		}
 
 		ol {
-			margin: 0;			   // Same as toolbar. Set for poput
+			margin: 0;             // Same as toolbar. Set for poput
 			padding: 0 0 0 1.75em; // All but left same as toolbar. Set for poput
 		}
 
@@ -274,10 +274,10 @@ $notice-yellow:    #e6a100;
 		> .#{$ns}-parent-heading-container { // summary element
 
 			cursor: pointer;
-			list-style: none;  		  // Removes marker
+			list-style: none; // Removes marker
 
 			&::-webkit-details-marker { 
-				display: none; 		  // Removes marker in Chrome and others
+				display: none; // Removes marker in Chrome and others
 			}
 
 			&:after { // Replace marker
