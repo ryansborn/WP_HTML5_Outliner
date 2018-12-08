@@ -4,7 +4,7 @@
 Plugin Name: WP HTML5 Outliner
 Plugin URI: https://github.com/ryansborn/WP_HTML5_Outliner
 Description: Adds an HTML 5 outline plus a heading-level outline to the WordPress Toolbar.
-Version: 1.0.0
+Version: 1.1.0
 Author: Ryan S. Born
 Author URI: https://github.com/ryansborn
 Text Domain: wph5o
@@ -88,12 +88,11 @@ function current_user_can_edit() {
 	
 	$post_id = get_queried_object_id();
 
-    if ( current_user_can( 'edit_post', $post_id ) || 
-    	 current_user_can( 'edit_page', $post_id ) ) {
+	if ( current_user_can( 'edit_post', $post_id ) || current_user_can( 'edit_page', $post_id ) ) {
 
-    	add_outliner_actions();
+		add_outliner_actions();
 
-    }
+	}
 
 }
 
@@ -120,11 +119,11 @@ function enqueue_scripts_and_styles() {
  */
 function add_outliner_actions() {
 
-    $class = __NAMESPACE__ . '\\WP_HTML5_Outliner';
+	$class = __NAMESPACE__ . '\\WP_HTML5_Outliner';
 
-    add_action( 'wp_head', array( $class, 'start_buffer' ), '999' );
-    add_action( 'wp_footer', array( $class, 'get_buffer' ), '1' );
-    add_action( 'admin_bar_menu', array( $class, 'add_to_toolbar' ), '999' );
+	add_action( 'wp_head', array( $class, 'start_buffer' ), '999' );
+	add_action( 'wp_footer', array( $class, 'get_buffer' ), '1' );
+	add_action( 'admin_bar_menu', array( $class, 'add_to_toolbar' ), '999' );
 	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_scripts_and_styles' );
 
 }
