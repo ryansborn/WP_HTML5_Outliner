@@ -16,18 +16,18 @@ jQuery( document ).ready( function( $ ) {
 	    headings  = container.querySelectorAll( '.wph5o-heading' ),
 	    // Presents the popout icon (as a pseudo-element).
 	    popper    = document.getElementById( 'wph5o-popper' ),
-		outlines  = {
-			// Contains the Structural Outline.
-			s : document.getElementById( 'wph5o-structural' ),
-			// Contains the Heading-level Outline.
-			hl: document.getElementById( 'wph5o-h-level' )
-		},
-		anchors   = {
-			// Links (same page) to the Structural Outline.
-			showS : document.getElementById( 'wph5o-show-s' ),
-			// Links (same page) to the Heading-level Outline.
-			showHl: document.getElementById( 'wph5o-show-hl' )
-		};
+	    outlines  = {
+	    	// Contains the Structural Outline.
+	    	s : document.getElementById( 'wph5o-structural' ),
+	    	// Contains the Heading-level Outline.
+	    	hl: document.getElementById( 'wph5o-h-level' )
+	    },
+	    anchors   = {
+	    	// Links (same page) to the Structural Outline.
+	    	showS : document.getElementById( 'wph5o-show-s' ),
+	    	// Links (same page) to the Heading-level Outline.
+	    	showHl: document.getElementById( 'wph5o-show-hl' )
+	    };
 
 	for ( var i in anchors ) {
 		if ( anchors.hasOwnProperty( i ) ) {
