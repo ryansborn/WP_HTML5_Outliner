@@ -17,10 +17,9 @@ require_once dirname( __FILE__ ) . '/Autoloader.php';
 /**
  * Implements the Document Outline Algorithm specified by the W3C.
  * 
- * In the W3C HTML 5.2 specification, the algorithm is presented as a series of 
- * commands in natural language. Here, the first three commands are enacted by 
- * declaring the three class properties. The remaining commands are enacted  
- * during calls to the methods walk(), enter_node(), and exit_node().
+ * The first three steps are implemented by declaring the three class 
+ * properties. The remaining steps are implemented during calls to the methods 
+ * walk(), enter_node(), and exit_node().
  * 
  * @since 1.0.0
  * @link  https://www.w3.org/TR/html5/sections.html#creating-an-outline
@@ -63,7 +62,6 @@ class Document_Outline_Algorithm {
 	 * methods being called and all properties being set.
 	 * 
 	 * @since 1.0.0
-	 * @see   wph5o\HTML5_Outline::outline() To set $root 
 	 * @param object $root the root element of the document
 	 */
 	public function __construct( $root ) {
@@ -361,9 +359,9 @@ class Document_Outline_Algorithm {
 		 */
 
 		$owner_exited = $owner;
-		$owner 		  = array_pop( $stack );
-		$sections	  = $owner->get_outline()->get_sections();
-		$section	  = end( $sections );
+		$owner 	      = array_pop( $stack );
+		$sections     = $owner->get_outline()->get_sections();
+		$section      = end( $sections );
 		$subsections  = $owner_exited->get_outline()->get_sections();
 
 		foreach ( $subsections as $sub ) {			
@@ -383,11 +381,11 @@ class Document_Outline_Algorithm {
 		$owner 	 = &$this->current_outline_owner;
 		$section = &$this->current_section;
 
-		$rank 		  = $this->get_rank( $heading );
-		$outline	  = $owner->get_outline();
-		$sections	  = $outline->get_sections();
+		$rank 	      = $this->get_rank( $heading );
+		$outline      = $owner->get_outline();
+		$sections     = $outline->get_sections();
 		$last_section = end( $sections );
-		$last_h 	  = $last_section->get_heading();
+		$last_h       = $last_section->get_heading();
 
 		/*
 		 * Checks whether the last heading in the current outline is
@@ -412,7 +410,7 @@ class Document_Outline_Algorithm {
 			 */
 
 			$abort_substeps	= false;
-			$candidate		= $section;
+			$candidate	    = $section;
 
 			do {
 
@@ -454,21 +452,22 @@ class Document_Outline_Algorithm {
 	 * @since  1.0.0
 	 * @see    Document_Outline_Algorithm::get_ranking_heading()
 	 * @param  object $heading a heading or hgroup element
-	 * @return int|null Returns the heading element's rank or null if there is 
-	 * no heading element.
+	 * @return int Returns the heading element's rank.
 	 */
 	private function get_rank( $heading ) {
 
 		if ( 'hgroup' == $heading->tagName ) {
 
-			$heading = $this->get_ranking_heading( $heading );
-		
+			if ( $this->get_ranking_heading( $heading ) ) {
+
+				$heading = $this->get_ranking_heading( $heading );
+
+			}
+
 		}
 
 		// Multiplies by -1 to make lower levels outrank higher ones.
-		$rank = $heading ? -1 * substr( $heading->tagName, 1 ) : null;
-
-		return $rank;
+		return -1 * substr( $heading->tagName, 1 );
 
 	}
 
@@ -493,9 +492,9 @@ class Document_Outline_Algorithm {
 	 * @since  1.0.0
 	 * @link   https://www.w3.org/TR/html5/dom.html#heading-content-2
 	 * @param  object $heading a heading or hgroup element
-	 * @return object|null Returns either (a) the element itself if it is a  
+	 * @return object Returns either (a) the element itself if it is a  
 	 * heading element, (b) the element's highest ranked heading element 
-	 * descendant if the element is an hgroup element, or (c) null if the 
+	 * descendant if the element is an hgroup element, or (c) nothing if the 
 	 * element is an hgroup element that contains no headings.
 	 */
 	private function get_ranking_heading( $heading ) {
@@ -509,9 +508,7 @@ class Document_Outline_Algorithm {
 			}
 		
 		}
-	
-		return null;
-	
+		
 	}
 
 } // END class Document_Outline_Algorithm
