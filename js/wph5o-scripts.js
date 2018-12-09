@@ -87,8 +87,8 @@ jQuery( document ).ready( function( $ ) {
 		// Marks body as the wrapper for the anchor and outline containers.
 		$( popped.document.body ).addClass( 'wph5o-wrapper' );
 
-    	popped.document.head.appendChild( css );
-    	popped.document.body.appendChild( toggle );
+		popped.document.head.appendChild( css );
+		popped.document.body.appendChild( toggle );
 		popped.document.body.appendChild( contnr );
 
 	}
