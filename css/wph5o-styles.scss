@@ -73,11 +73,11 @@ $notice-yellow:    #e6a100;
 	.#{$ns}-outliner-toolbar-node & { // Toolbar only
 		max-height: 600px;
 		overflow-y: auto;
-		width: 300px !important;      // Overwrites toolbar
+		width: 300px !important; // Overwrites toolbar
 	}
 
 	* {
-		line-height: 1.5 !important;  // Overwrites toolbar
+		line-height: 1.5 !important; // Overwrites toolbar
 	}
 
 	.#{$ns}-heading b, 
