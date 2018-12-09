@@ -410,7 +410,7 @@ class Document_Outline_Algorithm {
 			 */
 
 			$abort_substeps	= false;
-			$candidate	    = $section;
+			$candidate      = $section;
 
 			do {
 
