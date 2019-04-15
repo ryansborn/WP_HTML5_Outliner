@@ -3,7 +3,7 @@
 /**
  * WP HTML5 Outliner: Source_Loader class
  * 
- * @package Wordpress
+ * @package WP_HTML5_Outliner
  * @since   1.0.0
  */
 
@@ -17,19 +17,27 @@ namespace wph5o;
 class Source_Loader {
 
 	/**
-	 * Loads the to-be-outlined HTML to the referenced DOMDocument instance.
+	 * Loads the to-be-outlined HTML to the supplied DOMDocument instance.
 	 * 
 	 * @since 1.0.0
 	 * @see   DOMDocument::loadHTML()
 	 * @param object $doc an instance of DOM Document
 	 * @param string $source the HTML that will be outlined
 	 */
-	public static function load( &$doc, $source ) {
+	public static function load( $doc, $source ) {
 		
-		$html = mb_convert_encoding( $source, 'HTML-ENTITIES', 'UTF-8' );
+		$source = mb_convert_encoding( $source, 'HTML-ENTITIES', 'UTF-8' );
 
-		// Ensures the source has an html element as its root.
-		$html = '<html>' . $html . '</html>';
+		/*
+		 * Ensures the source has an html element as its root.
+		 * 
+		 * DOMDocument::loadHTML() will make the first element in `$source`
+		 * the root if the 'LIBXML_HTML_NOIMPLIED' parameter is used, as
+		 * it will be below. The first element in $source is not an html 
+		 * element, and it doesn't have to be, but making it an html element is
+		 * definitely a safe (i.e. valid) choice.
+		 */
+		$html = '<html>' . $source . '</html>';
 
 		libxml_use_internal_errors( true );
 
@@ -51,7 +59,9 @@ class Source_Loader {
 	private static function libxml_error_handler( $errors ) {
 	
 		if ( ! $errors ) {
+
 			return;
+
 		}
 
 		$return = '';
@@ -68,6 +78,7 @@ class Source_Loader {
 						__( 'Warning', 'wph5o' ), 
 						$load
 					);
+
 					break;
 
 				case LIBXML_ERR_ERROR:
@@ -78,12 +89,14 @@ class Source_Loader {
 					];
 					
 					foreach ( $messages as $message ) {
+						
 						if ( preg_match( $message, $error->message ) ) {
 
 							// Silence!
 							return ;
 
 						}
+					
 					}
 
 					$return .= sprintf(
@@ -91,6 +104,7 @@ class Source_Loader {
 						__( 'Error', 'wph5o' ), 
 						$load
 					);
+
 					break;
 
 				case LIBXML_ERR_FATAL:
@@ -100,6 +114,7 @@ class Source_Loader {
 						__( 'Fatal Error', 'wph5o' ), 
 						$load
 					);
+
 					break;
 
 			}
