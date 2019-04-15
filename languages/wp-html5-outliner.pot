@@ -1,8 +1,8 @@
-# Copyright (C) 2018 Ryan S. Born
+# Copyright (C) 2019 Ryan Born
 # This file is distributed under the same license as the WP HTML5 Outliner plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP HTML5 Outliner 1.0.0\n"
+"Project-Id-Version: WP HTML5 Outliner 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dist\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
