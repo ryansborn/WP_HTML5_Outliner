@@ -1,17 +1,26 @@
 <?php
 
+/**
+ * WP HTML5 Outliner
+ * 
+ * @package     WP_HTML5_Outliner
+ * @author      Ryan Born
+ * @copyright   2019 Ryan Born
+ * @license     GPL-2.0+
+ * 
+ * @wordpress-plugin
+ * Plugin Name: WP HTML5 Outliner
+ * Plugin URI:  https://github.com/ryansborn/WP_HTML5_Outliner
+ * Description: Adds an HTML 5 outline plus a heading-level outline to the WordPress Toolbar.
+ * Version:     1.2.0
+ * Author:      Ryan Born
+ * Author URI:  https://github.com/ryansborn
+ * Text Domain: wph5o
+ * License:     GPL-2.0+
+ */
+
 /*
-Plugin Name: WP HTML5 Outliner
-Plugin URI: https://github.com/ryansborn/WP_HTML5_Outliner
-Description: Adds an HTML 5 outline plus a heading-level outline to the WordPress Toolbar.
-Version: 1.1.0
-Author: Ryan S. Born
-Author URI: https://github.com/ryansborn
-Text Domain: wph5o
-License: GPL-2.0+
-*/
-/*
-Copyright 2018  Ryan Born
+Copyright 2019  Ryan Born
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as 
@@ -32,7 +41,9 @@ namespace wph5o;
 defined( 'ABSPATH' ) or die( 'Don\'t call plugins directly please.' );
 
 if ( is_admin() || is_customize_preview() ) {
+
 	return;
+
 }
 
 /**
@@ -55,7 +66,9 @@ add_action( 'init', __NAMESPACE__ . '\\is_administrator' );
 function is_administrator() {
 
 	if ( ! is_user_logged_in() ) {
+
 		return;
+
 	}
 
 	if ( current_user_can( 'manage_options' ) ) { 
@@ -83,9 +96,11 @@ function current_user_can_edit() {
 
 	// Aborts if not a single post or page.
 	if ( ! is_singular() || is_front_page() || is_home() ) {
+
 		return;
+
 	}
-	
+
 	$post_id = get_queried_object_id();
 
 	if ( current_user_can( 'edit_post', $post_id ) || current_user_can( 'edit_page', $post_id ) ) {
@@ -103,12 +118,29 @@ function current_user_can_edit() {
  */
 function enqueue_scripts_and_styles() {
 
-	wp_enqueue_script( 'wph50-scripts', 
+	wp_enqueue_script( 'wph5o-scripts', 
 		plugins_url( 'js/wph5o-scripts.min.js', __FILE__ ), 
-		array( 'jquery' ) );
+		array( 'jquery' ) 
+	);
 
 	wp_enqueue_style( 'wph5o-styles', 
-		plugins_url( 'css/wph5o-styles.min.css', __FILE__ ) );
+		plugins_url( 'css/wph5o-styles.min.css', __FILE__ ) 
+	);
+
+}
+
+/**
+ * Loads the plugin text domain for translation.
+ *
+ * @since 1.2.0
+ */
+function load_plugin_text_domain() {
+
+	load_plugin_textdomain(
+		'wph5o',
+		false,
+		plugins_url( 'languages/', __FILE__ ) 
+	);
 
 }
 
@@ -121,9 +153,10 @@ function add_outliner_actions() {
 
 	$class = __NAMESPACE__ . '\\WP_HTML5_Outliner';
 
+	add_action( 'init', __NAMESPACE__ . '\\load_plugin_text_domain' );
+	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_scripts_and_styles' );
 	add_action( 'wp_head', array( $class, 'start_buffer' ), '999' );
 	add_action( 'wp_footer', array( $class, 'get_buffer' ), '1' );
 	add_action( 'admin_bar_menu', array( $class, 'add_to_toolbar' ), '999' );
-	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_scripts_and_styles' );
 
 }
