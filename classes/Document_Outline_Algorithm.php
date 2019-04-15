@@ -3,7 +3,7 @@
 /**
  * WP HTML5 Outliner: Document_Outline_Algorithm class
  * 
- * @package Wordpress
+ * @package WP_HTML5_Outliner
  * @since   1.0.0
  */
 
@@ -51,7 +51,7 @@ class Document_Outline_Algorithm {
 	 * Allows nesting of sections.
 	 * 
 	 * @since 1.0.0
-	 * @var   object
+	 * @var   array
 	 */
 	private $stack = array();
 
@@ -128,14 +128,16 @@ class Document_Outline_Algorithm {
 
 		$top_is = Node_Analyzer::analyze( $top );
 
-		if ( 'heading' == $top_is || 'hidden' == $top_is ) {
+		if ( 'heading' === $top_is || 'hidden' === $top_is ) {
+
 			// Keeps walking if a heading or hidden element is atop the stack.
 			return;
+
 		}
 
 		$node_is = Node_Analyzer::analyze( $node );
 
-		if ( 'hidden' == $node_is ) {
+		if ( 'hidden' === $node_is ) {
 			
 			/* Sets aside the element, which has a hidden attribute. The 
 			 * element and its descendants are excluded from the outline.
@@ -154,7 +156,7 @@ class Document_Outline_Algorithm {
 
 		}
 
-		if ( 'heading' == $node_is ) {
+		if ( 'heading' === $node_is ) {
 
 			/*
 			 * Handles hgroup elements that contain no headings. 
@@ -213,16 +215,20 @@ class Document_Outline_Algorithm {
 		$top = $this->get_stack_top();
 				
 		if ( $top === $node ) {
+
 			array_pop( $stack );
+
 		}
 
 		$top_is = Node_Analyzer::analyze( $top );
 
-		if ( 'heading' == $top_is ) {
+		if ( 'heading' === $top_is ) {
+
 			return;
+
 		}
 
-		if ( 'hidden' == $top_is ) {
+		if ( 'hidden' === $top_is ) {
 			
 			// See the Section::associate_node() DocBlock for detailed comments.
 			$section->associate_node( $node );
@@ -249,13 +255,13 @@ class Document_Outline_Algorithm {
 	 * Gets the top node on $stack.
 	 * 
 	 * @since  1.0.0
-	 * @return object Returns the top node on $stack.
+	 * @return object Returns the top node on `$stack`.
 	 */
 	private function get_stack_top() { 
 
 		$top = end( $this->stack );
 
-		if( is_a( $top, __NAMESPACE__ . '\\Owner' ) ) {
+		if ( is_a( $top, __NAMESPACE__ . '\\Owner' ) ) {
 
 			// Gets the outline owner element.
 			$top = $top->get_the_owner();
@@ -271,7 +277,7 @@ class Document_Outline_Algorithm {
 	 * 
 	 * @since 1.0.0
 	 * @param object $element a sectioning element 
-	 * @param string $element_is the category of $element, either 
+	 * @param string $element_is the category of `$element`, either 
 	 * 'sectioning_root' or 'sectioning_content'
 	 */
 	private function open_sectioning_outline( $element, $element_is ) {
@@ -288,7 +294,7 @@ class Document_Outline_Algorithm {
 			// Sets aside the current outline owner. It will be revisited.
 			$stack[] = $owner;
 
-			if ( 'content' == $category ) {
+			if ( 'content' === $category ) {
 
 				if ( is_null( $section->get_heading() ) ) {
 
@@ -304,7 +310,7 @@ class Document_Outline_Algorithm {
 		// Updates the current outline owner to the element.
 		$owner = new Owner( $element );
 
-		if ( 'root' == $category ) {
+		if ( 'root' === $category ) {
 
 			$owner->set_parent_section( $section );
 
@@ -322,7 +328,7 @@ class Document_Outline_Algorithm {
 	 * Finalizes an existing outline of a sectioning element.
 	 * 
 	 * @since 1.0.0
-	 * @param string $element_is the category of $element, either 
+	 * @param string $element_is the category of `$element`, either 
 	 * 'sectioning_root' or 'sectioning_content' 
 	 */
 	private function close_sectioning_outline( $element_is ) {
@@ -335,15 +341,19 @@ class Document_Outline_Algorithm {
 		$category = substr( stristr( $element_is, '_'), 1 );
 
 		if ( is_null( $section->get_heading() ) ) {
+
 			// Gives the current section an implied heading.
 			$section->set_heading( false );
+
 		}
 
 		if ( ! $stack ) {
+
 			return;
+
 		}
 
-		if ( 'root' == $category ) {
+		if ( 'root' === $category ) {
 
 			// Moves a level up/out in the overall outline.
 			$section = $owner->get_parent_section();
@@ -353,7 +363,8 @@ class Document_Outline_Algorithm {
 
 		}
 
-		/* Moves a level up/out in the overall outline and makes all 
+		/* 
+		 * Moves a level up/out in the overall outline and makes all 
 		 * sections of the current outline subsections of the last section
 		 * of the previous outline.
 		 */
@@ -364,8 +375,10 @@ class Document_Outline_Algorithm {
 		$section      = end( $sections );
 		$subsections  = $owner_exited->get_outline()->get_sections();
 
-		foreach ( $subsections as $sub ) {			
+		foreach ( $subsections as $sub ) {
+
 			$section->append_subsection( $sub );				
+
 		}
 
 	}
@@ -389,12 +402,12 @@ class Document_Outline_Algorithm {
 
 		/*
 		 * Checks whether the last heading in the current outline is
-		 * implied or else outranks $heading.
+		 * implied or else outranks `$heading`.
 		 */
 		if ( false === $last_h || $rank >= $this->get_rank( $last_h ) ) {
 
 			/*
-			 * Starts a new section with $heading and sets the section's
+			 * Starts a new section with `$heading` and sets the section's
 			 * heading property to $heading.
 			 */
 			$section = new Section( $heading, $heading );
@@ -406,7 +419,7 @@ class Document_Outline_Algorithm {
 
 			/* 
 			 * Finds the parent section for the section that will be
-			 * created for $heading.
+			 * created for `$heading`.
 			 */
 
 			$abort_substeps	= false;
@@ -419,12 +432,12 @@ class Document_Outline_Algorithm {
 				if ( $rank < $this->get_rank( $candidate_heading ) ) {
 
 					/*
-					 * Starts a new section with $heading and sets the 
-					 * section's heading property to $heading.
+					 * Starts a new section with `$heading` and sets the 
+					 * section's heading property to `$heading`.
 					 */
 					$section = new Section( $heading, $heading ); 
 
-					// Adds the section as a subsection of $candidate.
+					// Adds the section as a subsection of `$candidate`.
 					$candidate->append_subsection( $section );				
 					$abort_substeps = true;
 
@@ -456,11 +469,13 @@ class Document_Outline_Algorithm {
 	 */
 	private function get_rank( $heading ) {
 
-		if ( 'hgroup' == $heading->tagName ) {
+		if ( 'hgroup' === $heading->tagName ) {
 
-			if ( $this->get_ranking_heading( $heading ) ) {
+			$ranking_heading = $this->get_ranking_heading( $heading );
 
-				$heading = $this->get_ranking_heading( $heading );
+			if ( $ranking_heading ) {
+
+				$heading = $ranking_heading;
 
 			}
 
@@ -503,8 +518,11 @@ class Document_Outline_Algorithm {
 		for ( $i = 1; $i <= 6; $i++ ) {
 			
 			$h = $heading->getElementsByTagName( 'h' . $i );
+			
 			if ( $h->length ) {
+
 				return $h->item(0);
+
 			}
 		
 		}
