@@ -3,7 +3,7 @@
 /**
  * WP HTML5 Outliner: Section class
  * 
- * @package Wordpress
+ * @package WP_HTML5_Outliner
  * @since   1.0.0
  */
 
@@ -105,6 +105,7 @@ class Section {
 	 * function associate_node() is called only if a node is in the section and
 	 * the node is either:
 	 * 
+	 * - a hidden node
 	 * - a text node
 	 * - a comment node
 	 * - an element that is NOT a heading, hgroup, or sectioning element
@@ -147,6 +148,7 @@ class Section {
 
 	/**
 	 * Sets the section's heading.
+	 * 
 	 * @since 1.0.0
 	 * @param object $heading a heading or hgroup element
 	 */

@@ -3,7 +3,7 @@
 /**
  * WP HTML5 Outliner: WP_HTML5_Outliner class
  * 
- * @package Wordpress
+ * @package WP_HTML5_Outliner
  * @since   1.0.0
  */
 
@@ -32,7 +32,7 @@ class WP_HTML5_Outliner {
 	/**
 	 * Starts buffering the webpage.
 	 * 
-	 * Hooks to wp_head() with a low priority so buffering starts as close
+	 * Hooks to `wp_head` with a low priority so buffering starts as close
 	 * as possible to the opening of the body element.
 	 * 
 	 * @since 1.0.0
@@ -48,7 +48,7 @@ class WP_HTML5_Outliner {
 	/**
 	 * Gets the webpage buffer.
 	 * 
-	 * Hooks to wp_footer() with a high priority so buffering stops as close as
+	 * Hooks to `wp_footer` with a high priority so buffering stops as close as
 	 * possible to the end of the page content, before scripts are appended to 
 	 * the body element.
 	 * 
@@ -107,10 +107,11 @@ class WP_HTML5_Outliner {
 	 * 
 	 * Key elements include:
 	 * 
-	 * - A container for the HTML 5 outline
-	 * - A container for a heading-level outline (JavaScript generated)
-	 * - A popup trigger for opening the outlines in a new window
-	 * - Anchors for switching between the two outline types 
+	 * - HTML 5 outline as an ordered list
+	 * - container for the HTML 5 outline
+	 * - container for a heading-level outline (JavaScript makes that outline)
+	 * - popup trigger for opening the outlines in a new window
+	 * - anchors for switching between the two outline types 
 	 * 
 	 * @since  1.0.0
 	 * @return string Returns an HTML representation of the HTML5 outline or a
@@ -120,7 +121,7 @@ class WP_HTML5_Outliner {
 
 		/* 
 		 * Tells user if there is no outline. Appears in place of the 
-		 * Heading-level outline by default.
+		 * heading-level outline by default.
 		 */
 		$notice = sprintf(
 			'<div class="%2$s-notice">%1$s</div>',
@@ -130,6 +131,7 @@ class WP_HTML5_Outliner {
 
 		if ( self::$page ) {
 
+			// Gets the outline as an ordered list
 			$outline = ( new Document_Outline( self::$page ) )->render_outline();
 
 		}

@@ -3,7 +3,7 @@
 /**
  * WP HTML5 Outliner: Document_Outline class
  * 
- * @package Wordpress
+ * @package WP_HTML5_Outliner
  * @since   1.0.0
  */
 
@@ -42,7 +42,7 @@ class Document_Outline {
 	}
 
 	/**
-	 * Outputs the outline as HTML.
+	 * Returns the outline as HTML.
 	 * 
 	 * @since  1.0.0
 	 * @return string Returns an HTML representation of the HTML 5 outline.

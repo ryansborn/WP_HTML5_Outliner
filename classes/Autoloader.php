@@ -3,7 +3,7 @@
 /**
  * WP HTML5 Outliner: Autoloader class
  * 
- * @package Wordpress
+ * @package WP_HTML5_Outliner
  * @since   1.0.0
  */
 
