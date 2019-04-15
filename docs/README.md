@@ -21,7 +21,7 @@ Screenshots #1 and #2 show the 'Outline' dropdown box in the Toolbar. At the top
 
 ### What is an HTML 5 outline?
 
-An HTML 5 Outline represents the sections of an HTML document. Each section corresponds to an element from one of three categories:
+An HTML 5 outline represents the sections of an HTML document. Each section corresponds to an element from one of three categories:
 
  - *Sectioning root*: `<blockquote>`, `<body>`, `<details>`, `<dialog>`, `<fieldset>`, `<figure>`, `<td>`
  - *Sectioning content*: `<article>`, `<aside>`, `<nav>`, `<section>`
@@ -49,7 +49,7 @@ Sources: [W3C Web Accessibility Initiative](https://www.w3.org/WAI/tutorials/pag
 
 ## Contributors
 
-[Ryan S. Born](https://github.com/ryansborn)
+[Ryan Born](https://github.com/ryansborn)
 
 
 ## Acknowledgments
