@@ -3,7 +3,7 @@
 /**
  * WP HTML5 Outliner: Node_Analyzer class
  * 
- * @package Wordpress
+ * @package WP_HTML5_Outliner
  * @since   1.0.0
  */
 
@@ -21,28 +21,30 @@ class Node_Analyzer {
 	 * 
 	 * @since  1.0.0
 	 * @param  object $node a node
-	 * @return string|null Returns an attribute or content category name or  
-	 * null if $node is not an element.
+	 * @return string Returns an attribute or content category name if $node  
+	 * is an element.
 	 */
 	public static function analyze( $node ) {
 
-		if ( ! $node || 1 != $node->nodeType ) {
-			return null;	
-		}
+		if ( $node && 1 === $node->nodeType ) {		
 
-		$results = [ 
-			'hidden', 
-			'heading', 
-			'sectioning_root', 
-			'sectioning_content' 
-		];
+			$results = [ 
+				'hidden', 
+				'heading', 
+				'sectioning_root', 
+				'sectioning_content' 
+			];
 
-		foreach ( $results as $result ) {
-			
-			$is_x = "is_{$result}";
+			foreach ( $results as $result ) {
+				
+				$is_x = "is_{$result}";
 
-			if ( self::$is_x( $node ) ) {
-				return $result;
+				if ( self::$is_x( $node ) ) {
+
+					return $result;
+
+				}
+
 			}
 
 		}
@@ -54,7 +56,7 @@ class Node_Analyzer {
 	 * 
 	 * @since  1.0.0
 	 * @param  object $element an element
-	 * @return boolean Returns true if the element has a hidden attribute and 
+	 * @return boolean Returns true if `$element` has a hidden attribute and 
 	 * false otherwise.
 	 */
 	private static function is_hidden( $element ) {
@@ -68,7 +70,7 @@ class Node_Analyzer {
 	 * 
 	 * @since  1.0.0
 	 * @param  object $element an element
-	 * @return boolean Returns true if the element is a heading or hgroup 
+	 * @return boolean Returns true if `$element` is a heading or hgroup 
 	 * element and false otherwise.
 	 */
 	private static function is_heading( $element ) { 
@@ -82,14 +84,12 @@ class Node_Analyzer {
 	 * 
 	 * @since  1.0.0
 	 * @param  object $element an element
-	 * @return boolean Returns true if the element is a sectioning root element 
+	 * @return boolean Returns true if `$element` is a sectioning root element 
 	 * and false otherwise.
 	 */
 	private static function is_sectioning_root( $element ) {
-
-		$sectioning_roots = '(blockquote|body|details|fieldset|figure|td)';
 	
-		return self::check_tag( $element, $sectioning_roots );
+		return self::check_tag( $element, '(blockquote|body|details|fieldset|figure|td)' );
 
 	}
 
@@ -98,7 +98,7 @@ class Node_Analyzer {
 	 * 
 	 * @since  1.0.0
 	 * @param  object $element an element
-	 * @return boolean Returns true if the element is a sectioning content 
+	 * @return boolean Returns true if `$element` is a sectioning content 
 	 * element and false otherwise.
 	 */
 	private static function is_sectioning_content( $element ) {
@@ -113,7 +113,7 @@ class Node_Analyzer {
 	 * @since  1.0.0
 	 * @param  object $element an element
 	 * @param  string $names a regular expression of selected element names
-	 * @return boolean Returns true if the element has the specified name and 
+	 * @return boolean Returns true if the name of `$element` is in `$names` and 
 	 * false otherwise.
 	 */
 	private static function check_tag( $element, $names ) {
