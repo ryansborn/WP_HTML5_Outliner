@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.0 (2020-1-26)
+- Change text domain to plugin slug.
+- Add i18n support to JS files.
+- Edit readme section titled “Why do these outlines matter?”.
+
 ## 1.2.0 (2019-4-14)
 - Add function to load plugin's text domain.
 - Ensure 'No outline was created' message replaces heading-level outline if source has no headings.
