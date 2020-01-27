@@ -5,22 +5,23 @@
  * 
  * @package     WP_HTML5_Outliner
  * @author      Ryan Born
- * @copyright   2019 Ryan Born
+ * @copyright   2018 Ryan Born
  * @license     GPL-2.0+
  * 
  * @wordpress-plugin
  * Plugin Name: WP HTML5 Outliner
  * Plugin URI:  https://github.com/ryansborn/WP_HTML5_Outliner
  * Description: Adds an HTML 5 outline plus a heading-level outline to the WordPress Toolbar.
- * Version:     1.2.0
+ * Version:     1.3.0
  * Author:      Ryan Born
  * Author URI:  https://github.com/ryansborn
- * Text Domain: wph5o
  * License:     GPL-2.0+
+ * Text Domain: wp-html5-outliner
+ * Domain Path: /languages
  */
 
 /*
-Copyright 2019  Ryan Born
+Copyright 2018  Ryan Born
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as 
@@ -114,13 +115,15 @@ function current_user_can_edit() {
 /**
  * Enqueues JavaScript and CSS files.
  * 
+ * As of version 1.3.0, enqueued scripts include 'wp-i18n' dependency.
+ * 
  * @since 1.0.0
  */
 function enqueue_scripts_and_styles() {
 
 	wp_enqueue_script( 'wph5o-scripts', 
 		plugins_url( 'js/wph5o-scripts.min.js', __FILE__ ), 
-		array( 'jquery' ) 
+		array( 'jquery', 'wp-i18n' ) 
 	);
 
 	wp_enqueue_style( 'wph5o-styles', 
@@ -137,7 +140,7 @@ function enqueue_scripts_and_styles() {
 function load_plugin_text_domain() {
 
 	load_plugin_textdomain(
-		'wph5o',
+		'wp-html5-outliner',
 		false,
 		plugins_url( 'languages/', __FILE__ ) 
 	);
