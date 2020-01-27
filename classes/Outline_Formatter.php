@@ -246,7 +246,7 @@ class Outline_Formatter {
 
 			/* translators: %s represents an HTML tag name, e.g., 'body'. */
 			return sprintf(
-				__( '[%s element with no heading]', 'wph5o' ), 
+				__( '[%s element with no heading]', 'wp-html5-outliner' ), 
 				$element_name
 			);
 		
@@ -254,7 +254,7 @@ class Outline_Formatter {
 
 		/* translators: %s represents an HTML tag name, e.g., 'body'. */
 		return sprintf( 
-			__( '[%s element with empty heading]', 'wph5o' ), 
+			__( '[%s element with empty heading]', 'wp-html5-outliner' ), 
 			$element_name 
 		);
 

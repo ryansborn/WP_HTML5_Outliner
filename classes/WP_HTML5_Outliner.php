@@ -67,7 +67,7 @@ class WP_HTML5_Outliner {
 			 * already stopped. In the latter case, the browser window might be 
 			 * empty save for this message.
 			 */
-			trigger_error( __( 'Page buffer failed', 'wph5o' ), E_USER_WARNING );
+			trigger_error( __( 'Page buffer failed', 'wp-html5-outliner' ), E_USER_WARNING );
 
 			return;
 
@@ -125,7 +125,7 @@ class WP_HTML5_Outliner {
 		 */
 		$notice = sprintf(
 			'<div class="%2$s-notice">%1$s</div>',
-			__( 'No outline was created.', 'wph5o' ),
+			__( 'No outline was created.', 'wp-html5-outliner' ),
 			__NAMESPACE__ 
 		);
 
@@ -166,13 +166,13 @@ class WP_HTML5_Outliner {
 					</div><!-- #%9$s-h-level -->
 				</div><!-- #%9$s-outline -->
 			</div><!-- .%9$s-wrapper -->',
-			esc_attr__( 'Open in new window', 'wph5o' ),
-			esc_attr__( 'Select Outline Type', 'wph5o' ),
-			__( 'Structural (HTML5)', 'wph5o' ),
-			__( 'Heading-level', 'wph5o' ),
-			__( 'Structural (HTML5) Outline', 'wph5o' ),
+			esc_attr__( 'Open in new window', 'wp-html5-outliner' ),
+			esc_attr__( 'Select Outline Type', 'wp-html5-outliner' ),
+			__( 'Structural (HTML5)', 'wp-html5-outliner' ),
+			__( 'Heading-level', 'wp-html5-outliner' ),
+			__( 'Structural (HTML5) Outline', 'wp-html5-outliner' ),
 			$outline,
-			__( 'Heading-level Outline', 'wph5o' ),
+			__( 'Heading-level Outline', 'wp-html5-outliner' ),
 			$notice,
 			__NAMESPACE__
 		);

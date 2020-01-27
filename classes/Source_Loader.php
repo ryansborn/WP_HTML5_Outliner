@@ -75,7 +75,7 @@ class Source_Loader {
 
 					$return .= sprintf(
 						'<b>%1$s</b>: %2$s: ', 
-						__( 'Warning', 'wph5o' ), 
+						__( 'Warning', 'wp-html5-outliner' ), 
 						$load
 					);
 
@@ -101,7 +101,7 @@ class Source_Loader {
 
 					$return .= sprintf(
 						'<b>%1$s</b>: %2$s: ', 
-						__( 'Error', 'wph5o' ), 
+						__( 'Error', 'wp-html5-outliner' ), 
 						$load
 					);
 
@@ -111,7 +111,7 @@ class Source_Loader {
 
 					$return .= sprintf(
 						'<b>%1$s</b>: %2$s: ', 
-						__( 'Fatal Error', 'wph5o' ), 
+						__( 'Fatal Error', 'wp-html5-outliner' ), 
 						$load
 					);
 
@@ -119,7 +119,7 @@ class Source_Loader {
 
 			}
 
-			$file = $error->file ?: __( 'Entity', 'wph5o' );
+			$file = $error->file ?: __( 'Entity', 'wp-html5-outliner' );
 
 			// Emulates the output of the standard PHP error handler.
 			/* 
@@ -130,7 +130,7 @@ class Source_Loader {
 			 * a line number, e.g., 199. %4$s represents a file path.
 			 */
 			$return .= sprintf(
-				__('%1$s in %2$s, line: %3$s in %4$s', 'wph5o'), 
+				__( '%1$s in %2$s, line: %3$s in %4$s', 'wp-html5-outliner' ), 
 				trim($error->message), 
 				$file,
 				$error->line,
