@@ -39,7 +39,7 @@ Sources: [W3C Quality Assurance](https://www.w3.org/QA/Tips/headings), [W3C HTML
 ### Why do these outlines matter?
 Each outline shows how well a page meets web standards for marking up document structure. User agents, particularly screen readers, use the heading-level outline to aid navigation. However, no web browsers or assistive technologies make use of the HTML 5 outline. So, really, the question is this: Why does *that* outline matter?
 
-Although user agents still haven’t implemented the HTML 5 outline (which is about a decade old), developers aren’t giving up on it. And they have their reasons. The MDN web docs highlight some [problems solved by HTML 5 document structure](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines#Problems_solved_by_HTML5).
+Although user agents still haven’t implemented the HTML 5 outline ([introduced in 2008](https://www.w3.org/TR/2008/WD-html5-20080610/the-root.html#outlines)), developers aren’t giving up on it. And they have their reasons. The MDN web docs highlight some [problems solved by HTML 5 document structure](https://wiki.developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines$revision/1532798#Problems_solved_by_HTML5).
 
 Sources: [W3C Web Accessibility Initiative](https://www.w3.org/WAI/tutorials/page-structure/headings/), [W3C HTML 5.2 Specification](https://www.w3.org/TR/html52/sections.html)
 
