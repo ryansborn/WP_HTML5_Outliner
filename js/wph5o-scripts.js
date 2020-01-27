@@ -8,7 +8,18 @@
  * @since 1.0.0
  */
 
+/* global jQuery, wp */
+/* jshint { globals jQuery, wp } */
+
 jQuery( document ).ready( function( $ ) {
+
+	/**
+	 * Retrieves translated text. 
+	 *
+	 * @since 1.3.0
+	 * @see {@link https://developer.wordpress.org/block-editor/packages/packages-i18n/#__}
+	 */
+	var __ = wp.i18n.__;
 
 	    // Contains the outlines.
 	var container = document.getElementById( 'wph5o-outline' ),
@@ -171,7 +182,7 @@ jQuery( document ).ready( function( $ ) {
 					    h = tag.cloneNode();
 
 					$( p ).addClass( 'wph5o-missing-heading wph5o-level-' + j );
-					$( p ).text( ' [missing]' ).appendTo( outlines.hl );
+					$( p ).text( __( ' [missing]', 'wp-html5-outliner' ) ).appendTo( outlines.hl );
 					$( h ).text( '<H' + j + '>' ).prependTo( p );
 					j++;
 
@@ -183,7 +194,7 @@ jQuery( document ).ready( function( $ ) {
 			if ( $( text ).hasClass( 'wph5o-heading-notice' ) ) {
 
 				// Replaces empty-heading notice from Structural Outline.
-				$( text ).text( '[empty]' );
+				$( text ).text( __( '[empty]', 'wp-html5-outliner' ) );
 
 			}
 
